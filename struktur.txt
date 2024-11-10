@@ -1,0 +1,23 @@
+dataset
+ - test
+    - sehat 
+    - sakit 
+ - train 
+    - sehat 
+    - sakit 
+raw_image
+ - test
+    - sehat 
+    - sakit 
+ - train 
+    - sehat 
+    - sakit 
+model 
+ - model_ver_1
+extraction
+ - extracted_features_1.xlxs
+training.py 
+remove_bg.py 
+rename_image.py 
+extract_feature.py 
+predict.py
