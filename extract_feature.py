@@ -82,10 +82,10 @@ features, filenames, label_names = process_dataset(dataset_folder)
 # Konversi ke DataFrame untuk disimpan ke Excel
 columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label']
 df = pd.DataFrame(features, columns=columns)
-# df['LabelName'] = label_names  # Tambahkan kolom nama label
-# df['Nama File'] = filenames  # Tambahkan kolom nama file
+df['LabelName'] = label_names  # Tambahkan kolom nama label
+df['Nama File'] = filenames  # Tambahkan kolom nama file
 
 # Simpan ke file Excel
-output_file = "extractions\extracted_features_2.xlsx"
+output_file = "extractions\extracted_features_2_name.xlsx"
 df.to_excel(output_file, index=False)
 print(f"Data fitur disimpan ke {output_file}")

@@ -14,7 +14,7 @@ raw_image
     - sakit 
 model 
  - model_ver_1
-extraction
+extractions
  - extracted_features_1.xlxs
 training.py 
 remove_bg.py 
