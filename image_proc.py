@@ -3,6 +3,23 @@ import io
 from rembg import remove
 from PIL import Image, ImageEnhance
 
+# def process_image(input_path, output_path, filename):
+#     # Buka gambar dari file path
+#     with Image.open(input_path).convert("RGB") as img:
+#         # Resize gambar ke 512x512
+#         resized_image = img.resize((512, 512))
+        
+#         # Gabungkan output folder dengan nama file
+#         output_file_path = os.path.join(output_path, filename)
+
+#         # Pastikan folder tujuan ada sebelum menyimpan file
+#         os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+
+#         # Simpan gambar yang sudah di-resize
+#         resized_image.save(output_file_path)
+        
+#     print(f"Processed: {input_path} -> {output_file_path}")
+
 def process_image(input_path, output_path, filename):
     with open(input_path, "rb") as input_file:
         input_image = input_file.read()
