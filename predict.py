@@ -85,6 +85,6 @@ def predict_single_image(image_file, model_path):
 
 if __name__ == "__main__":
     # Path model dan folder gambar
-    model_path = r"models\test\decision_tree_4.pkl"
+    model_path = r"models\test\decision_tree_7.pkl"
     image_folder = r"dataset_test_7\test\sakit"
     predict_folder(image_folder, model_path)

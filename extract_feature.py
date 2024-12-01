@@ -68,6 +68,6 @@ columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label
 df = pd.DataFrame(features, columns=columns)
 
 # Simpan ke file Excel
-output_file = "extractions\extr_ftr_test_5_name.xlsx"
+output_file = "extractions\extr_ftr_test_7_name.xlsx"
 df.to_excel(output_file, index=False)
 print(f"Data fitur disimpan ke {output_file}")

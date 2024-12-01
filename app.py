@@ -7,36 +7,41 @@ import random
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="PIL")
 
-# Inisialisasi klien API Roboflow
-CLIENT = InferenceHTTPClient(
-    api_url="https://detect.roboflow.com",
-    api_key="MIebZflR9bJdmpmXovTj"
-)
-
-# Input gambar
-image_input = r"raw_image\test\test4.png"
-image = Image.open(image_input)
-result = result = CLIENT.infer(image_input, model_id="tomato-leaf-disease-rxcft/3?confidence=0.20")
-
-print("Prediction result:", result)
-
-# Folder output
+# membuat folder output
 output_folder = "crops"
 os.makedirs(output_folder, exist_ok=True)
+output_folder_procs = "crops_procs"
+os.makedirs(output_folder_procs, exist_ok=True)
 
-# Salin gambar input untuk ditambahkan bounding box
-annotated_image = image.copy()  # Salin gambar input
-draw = ImageDraw.Draw(annotated_image)
-
-# Tentukan font untuk label
-font_path = "poppins_bold.ttf"  # Pastikan font tersedia di sistem Anda, gunakan font lain jika tidak ada
+# setting font untuk bounding box
+font_path = "poppins_bold.ttf"
 try:
-    font = ImageFont.truetype(font_path, size=20)  # Ukuran font diperbesar (20 px)
+    font = ImageFont.truetype(font_path, size=20)
 except IOError:
     print(f"Font '{font_path}' tidak ditemukan, menggunakan default font.")
     font = ImageFont.load_default()
 
-# Iterasi setiap prediksi untuk menggambar bounding box dan label
+# list color bounding box
+color_list = ["red", "blue", "purple", "navy", "magenta"]
+
+# input gambar
+image_input = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\train\sakit\tomato-train-sakit-01.jpg"
+image = Image.open(image_input)
+
+# copy gambar untuk membuat bounding box
+annotated_image = image.copy()
+draw = ImageDraw.Draw(annotated_image)
+
+# memanggil api yolov7
+CLIENT = InferenceHTTPClient(
+    api_url="https://detect.roboflow.com",
+    api_key="MIebZflR9bJdmpmXovTj"
+)
+result = result = CLIENT.infer(image_input, model_id="tomato-leaf-disease-rxcft/3?confidence=0.20")
+
+print("PAYLOAD : ", result)
+
+# membaca data predictions dibagian lokasi daun
 for idx, prediction in enumerate(result["predictions"]):
     x = prediction["x"]
     y = prediction["y"]
@@ -57,11 +62,10 @@ for idx, prediction in enumerate(result["predictions"]):
 
     # preprocessing and predict
     print('preprocessing image : ' + crop_output_path)
-    process_image(crop_output_path, r'crop_procs', filename)
-    label = predict_single_image(crop_output_path, r"models\test\decision_tree_3.pkl")
+    process_image(crop_output_path, output_folder_procs, filename)
+    label = predict_single_image(crop_output_path, r"models\test\decision_tree_7.pkl")
 
     # add bounding box
-    color_list = ["red", "blue", "purple", "navy", "magenta"]
     color = random.choice(color_list)
     draw.rectangle([(left, top), (right, bottom)], outline=color, width=3)
     label_position = (left, top - 25)
