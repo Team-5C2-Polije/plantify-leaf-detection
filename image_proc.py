@@ -55,20 +55,20 @@ def process_folder(input_folder, output_folder):
             process_image(input_path, output_folder, filename)  # Proses gambar
 
 # Folder input dan output
-input_folder_train_sehat = r"C:\dev\python\tomato-leaf-sistem\dataset_raw_old\train\sehat"
-input_folder_train_sakit = r"C:\dev\python\tomato-leaf-sistem\dataset_raw_old\train\sakit"
-input_folder_test_sehat =  r"C:\dev\python\tomato-leaf-sistem\dataset_raw_old\test\sehat"
-input_folder_test_sakit =  r"C:\dev\python\tomato-leaf-sistem\dataset_raw_old\test\sakit"
+input_folder_train_sehat = r"C:\dev\python\tomato-leaf-sistem\dataset_raw_new\train\sehat"
+input_folder_train_sakit = r"C:\dev\python\tomato-leaf-sistem\dataset_raw_new\train\sakit"
+input_folder_test_sehat =  r"C:\dev\python\tomato-leaf-sistem\dataset_raw_new\test\sehat"
+input_folder_test_sakit =  r"C:\dev\python\tomato-leaf-sistem\dataset_raw_new\test\sakit"
 
-output_folder_train_sehat = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\train\sehat"
-output_folder_train_sakit = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\train\sakit"
-output_folder_test_sehat  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\test\sehat"
-output_folder_test_sakit  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\test\sakit"
+output_folder_train_sehat = r"C:\dev\python\tomato-leaf-sistem\dataset_test_8\train\sehat"
+output_folder_train_sakit = r"C:\dev\python\tomato-leaf-sistem\dataset_test_8\train\sakit"
+output_folder_test_sehat  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_8\test\sehat"
+output_folder_test_sakit  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_8\test\sakit"
 
 # Proses keempat folder
-# process_folder(input_folder_train_sehat, output_folder_train_sehat)
-# process_folder(input_folder_train_sakit, output_folder_train_sakit)
-# process_folder(input_folder_test_sehat, output_folder_test_sehat)
-# process_folder(input_folder_test_sakit, output_folder_test_sakit)
+process_folder(input_folder_train_sehat, output_folder_train_sehat)
+process_folder(input_folder_train_sakit, output_folder_train_sakit)
+process_folder(input_folder_test_sehat, output_folder_test_sehat)
+process_folder(input_folder_test_sakit, output_folder_test_sakit)
 
 print("Proses selesai untuk semua folder.")

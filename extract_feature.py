@@ -58,7 +58,7 @@ def process_dataset(dataset_folder):
     return np.array(features)
 
 # Path ke folder dataset
-dataset_folder = r"C:\dev\python\tomato-leaf-sistem\dataset_test_7\train"
+dataset_folder = r"C:\dev\python\tomato-leaf-sistem\dataset_test_8\train"
 
 # Proses dataset
 features = process_dataset(dataset_folder)
@@ -68,6 +68,6 @@ columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label
 df = pd.DataFrame(features, columns=columns)
 
 # Simpan ke file Excel
-output_file = "extractions\extr_ftr_test_7_name.xlsx"
+output_file = "extractions\extr_ftr_new_dataset_train.xlsx"
 df.to_excel(output_file, index=False)
 print(f"Data fitur disimpan ke {output_file}")

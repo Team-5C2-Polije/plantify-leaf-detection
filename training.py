@@ -5,13 +5,13 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import joblib
 
 # Load data dari file Excel
-data = pd.read_excel("extractions\extr_ftr_test_7_name.xlsx")
+data = pd.read_excel("extractions\extr_ftr_new_dataset_train.xlsx")
 
 X = data.drop(columns=["Label"])
 y = data["Label"]
 
 # Split data menjadi training dan testing
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Inisialisasi dan latih model Decision Tree
 model = DecisionTreeClassifier(max_depth=10, criterion='entropy', random_state=42)
@@ -31,7 +31,7 @@ print(confusion_matrix(y_test, y_pred))
 scores = cross_val_score(model, X, y, cv=5)
 print(f"Cross-validated accuracy: {scores.mean():.2f}")
 
-# Simpan model ke file
-model_file = r"models\test\decision_tree_7.pkl"
+# Simpan model ke 
+model_file = r"models\test\decision_data_new_dataset.pkl"
 joblib.dump(model, model_file)
 print(f"Model disimpan ke {model_file}")
