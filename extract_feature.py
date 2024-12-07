@@ -27,41 +27,52 @@ def extract_features(image_path):
     return [R, G, B, contrast, homogeneity, energy, correlation]
 
 # Fungsi untuk memproses semua gambar dalam folder
-def process_dataset(dataset_folder):
-    features = []
-    labels = []
+def process_dataset(dataset_train_folder, dataset_test_folder):
+    def extract_folder(dataset_folder):
+        data = []  # Menyimpan hasil fitur dari folder tertentu
+        label_mapping = {"sehat": 1, "sakit": 0}  # Peta label ke nama
 
-    label_mapping = {"sehat": 1, "sakit": 0}  # Peta label ke nama
+        for category in os.listdir(dataset_folder):
+            category_path = os.path.join(dataset_folder, category)
 
-    for category in os.listdir(dataset_folder):
-        category_path = os.path.join(dataset_folder, category)  # Path ke subfolder kategori
-        
-        # Pastikan category_path adalah direktori
-        if not os.path.isdir(category_path):
-            continue
+            # Pastikan category_path adalah direktori
+            if not os.path.isdir(category_path):
+                continue
 
-        print(f"Memproses kategori: {category}")  # Logging kategori
+            print(f"Memproses kategori: {category}")  # Logging kategori
 
-        # Iterasi file dalam subfolder
-        for filename in os.listdir(category_path):
-            if filename.endswith((".jpg", ".jpeg", ".png")):
-                file_path = os.path.join(category_path, filename)
-                print(f"Memproses file: {file_path}")  # Logging file
+            # Iterasi file dalam subfolder
+            for filename in os.listdir(category_path):
+                if filename.endswith((".jpg", ".jpeg", ".png")):
+                    file_path = os.path.join(category_path, filename)
+                    print(f"Memproses file: {file_path}")  # Logging file
 
-                # Ekstraksi fitur
-                feature = extract_features(file_path)
-                if feature is not None:
-                    features.append(feature + [label_mapping[category]])  # Tambahkan label di akhir
-                else:
-                    print(f"Gagal mengekstraksi fitur dari: {file_path}")
+                    # Ekstraksi fitur
+                    feature = extract_features(file_path)
+                    if feature is not None:
+                        # Tambahkan fitur dengan label saja (tanpa dataset_type)
+                        data.append(feature + [label_mapping[category]])
+                    else:
+                        print(f"Gagal mengekstraksi fitur dari: {file_path}")
+        return data
 
-    return np.array(features)
+    # Proses folder train
+    train_data = extract_folder(dataset_train_folder)
+    # Proses folder test
+    test_data = extract_folder(dataset_test_folder)
+
+    # Gabungkan data train dan test
+    combined_data = train_data + test_data
+
+    return np.array(combined_data)
+
 
 # Path ke folder dataset
-dataset_folder = r"C:\dev\python\tomato-leaf-sistem\dataset_test_9\train"
+dataset_train = r"C:\dev\python\tomato-leaf-sistem\dataset_test_9\train"
+dataset_test  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_9\test"
 
 # Proses dataset
-features = process_dataset(dataset_folder)
+features = process_dataset(dataset_train, dataset_test)
 
 # Konversi ke DataFrame untuk disimpan ke Excel
 columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label']
