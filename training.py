@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import joblib
 
 # Load data dari file Excel
-data = pd.read_excel("extractions\extr_ftr_new_dataset_train.xlsx")
+data = pd.read_excel("extractions\extr_ftr_dataset_last_train.xlsx")
 
 X = data.drop(columns=["Label"])
 y = data["Label"]
@@ -32,6 +32,6 @@ scores = cross_val_score(model, X, y, cv=5)
 print(f"Cross-validated accuracy: {scores.mean():.2f}")
 
 # Simpan model ke 
-model_file = r"models\test\decision_data_new_dataset.pkl"
+model_file = r"models\test\decision_dataset_last.pkl"
 joblib.dump(model, model_file)
 print(f"Model disimpan ke {model_file}")
