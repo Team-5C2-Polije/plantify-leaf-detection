@@ -68,8 +68,8 @@ def process_dataset(dataset_train_folder, dataset_test_folder):
 
 
 # Path ke folder dataset
-dataset_train = r"C:\dev\python\tomato-leaf-sistem\dataset_test_9\train"
-dataset_test  = r"C:\dev\python\tomato-leaf-sistem\dataset_test_9\test"
+dataset_train = r"C:\dev\python\tomato-leaf-sistem\dataset_12_08\train"
+dataset_test  = r"C:\dev\python\tomato-leaf-sistem\dataset_12_08\test"
 
 # Proses dataset
 features = process_dataset(dataset_train, dataset_test)
@@ -79,6 +79,6 @@ columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label
 df = pd.DataFrame(features, columns=columns)
 
 # Simpan ke file Excel
-output_file = "extractions\extr_ftr_dataset_last_train.xlsx"
+output_file = "extractions\dataset_12_08.xlsx"
 df.to_excel(output_file, index=False)
 print(f"Data fitur disimpan ke {output_file}")
