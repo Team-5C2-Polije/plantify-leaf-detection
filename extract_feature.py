@@ -51,6 +51,7 @@ def process_dataset(dataset_train_folder, dataset_test_folder):
                     feature = extract_features(file_path)
                     if feature is not None:
                         # Tambahkan fitur dengan label saja (tanpa dataset_type)
+                        # data.append(feature + [label_mapping[category], category, filename])
                         data.append(feature + [label_mapping[category]])
                     else:
                         print(f"Gagal mengekstraksi fitur dari: {file_path}")
@@ -66,7 +67,6 @@ def process_dataset(dataset_train_folder, dataset_test_folder):
 
     return np.array(combined_data)
 
-
 # Path ke folder dataset
 dataset_train = r"C:\dev\python\tomato-leaf-sistem\dataset_12_08\train"
 dataset_test  = r"C:\dev\python\tomato-leaf-sistem\dataset_12_08\test"
@@ -76,6 +76,7 @@ features = process_dataset(dataset_train, dataset_test)
 
 # Konversi ke DataFrame untuk disimpan ke Excel
 columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label']
+# columns = ['R', 'G', 'B', 'Kontras', 'Homogenitas', 'Energi', 'Korelasi', 'Label', 'Category', 'Filename']
 df = pd.DataFrame(features, columns=columns)
 
 # Simpan ke file Excel
